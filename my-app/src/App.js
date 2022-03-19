@@ -3,9 +3,7 @@ import './App.css';
 
 const giphy_secret_key = process.env.REACT_APP_GIPHY_KEY
 
-document.writeln("Hello World")
-
-/*function App() {
+function App() {
   return (
     <div className="App">
       <header className="App-header">
@@ -19,11 +17,13 @@ document.writeln("Hello World")
           target="_blank"
           rel="noopener noreferrer"
         >
-          Learn React
+          Learn React aselole
+          
         </a>
+        
       </header>
     </div>
   );
 }
-*/
+
 export default App;
