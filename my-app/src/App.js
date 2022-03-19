@@ -3,6 +3,8 @@ import './App.css';
 
 const giphy_secret_key = process.env.REACT_APP_GIPHY_KEY
 
+document.writeln("Hello World")
+
 /*function App() {
   return (
     <div className="App">
