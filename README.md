@@ -1,3 +1,3 @@
 # Gigit GIT Example
-
-HELLLOOOO
+HELLO
+SEMUA
