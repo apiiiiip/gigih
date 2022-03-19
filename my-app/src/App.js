@@ -1,7 +1,9 @@
 import logo from './logo.svg';
 import './App.css';
 
-function App() {
+const giphy_secret_key = process.env.REACT_APP_GIPHY_KEY
+
+/*function App() {
   return (
     <div className="App">
       <header className="App-header">
@@ -21,5 +23,5 @@ function App() {
     </div>
   );
 }
-
+*/
 export default App;
