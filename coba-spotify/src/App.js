@@ -1,9 +1,11 @@
 import logo from './logo.svg';
 import './App.css';
 
-const giphy_secret_key = process.env.REACT_APP_GIPHY_KEY
+
 
 function App() {
+  const spotify_client_id = process.env.REACT_APP_SPOTIFY_CLIENT_ID
+  console.log(spotify_client_id);
   return (
     <div className="App">
       <header className="App-header">
@@ -17,10 +19,8 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Learn React aselole
-          
+          Learn React
         </a>
-        
       </header>
     </div>
   );
