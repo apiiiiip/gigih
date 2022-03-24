@@ -27,6 +27,10 @@ body{
   color: white;
 }
 
+img{
+  animation: rotation 5s infinite linear;
+}
+
 .App-mainDesc{
   color: antiquewhite;
 }
@@ -52,4 +56,13 @@ body{
 .btn:hover{
   background-color: crimson;
   cursor:pointer;
+}
+
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
 }
