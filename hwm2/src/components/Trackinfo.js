@@ -1,5 +1,6 @@
 import '../App.css'
 import {data} from '../data.js'
+import React from 'react';
 
 function Trackinfo(){
     return(
