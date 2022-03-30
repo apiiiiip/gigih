@@ -1,0 +1,56 @@
+Client ID 0351cc6087e444268ec2ff1e557de0c6
+
+Client Secret 6677d1b87f6d4dcdb24b1a8b3515e651
+
+https%3A%2F%2Flocal%3A3000%2F
+
+https://accounts.spotify.com/authorize?client_id=0351cc6087e444268ec2ff1e557de0c6&scopes=playlist-modify-private&response_type=code&redirect_uri=https%3A%2F%2Flocal%3A3000%2F
+
+curl --request GET \
+    'https://api.spotify.com/v1/tracks/2TpxZ7JUBn3uw46aR7qd6V' \
+     --header "Authorization: Bearer NgCXRK...MzYjw"
+
+
+
+https://local:3000/#access_token=BQDSaK0KgT_3SKkY0sXQgAG9kt3Za1wyUYKCOx3Abi5xYKTywantMeP8noLjNuwZoDYO1-6qRfYQ46DnwluzE7RMUW8eF0aFPW3-trcmuWB4okahu02ksdNLfeMvw0yIR4oBfyskbkvZMA&token_type=Bearer&expires_in=3600
+
+
+const [searchKey, setSearchKey] = useState("")
+const [artists, setArtists] = useState([])
+
+
+const searchArtists = async (e) => {
+  e.preventDefault()
+  const {data} = await axios.get("https://api.spotify.com/v1/search", {
+      headers: {
+          Authorization: `Bearer ${token}`
+      },
+      params: {
+          q: searchKey,
+          type: "artist"
+      }
+  })
+
+  setArtists(data.artists.items)
+}
+
+const renderArtists = () => {
+  return artists.map(artist => (
+      <div key={artist.id}>
+          {artist.images.length ? <img width={"100%"} src={artist.images[0].url} alt=""/> : <div>No Image</div>}
+          {artist.name}
+      </div>
+  ))
+}
+
+{renderArtists()}
+
+      <form onSubmit={searchArtists}>
+        <input type="text" onChange={e => setSearchKey(e.target.value)}/>
+        <button type={"submit"}>Search</button>
+      </form>
+
+CLIENT_ID = "0351cc6087e444268ec2ff1e557de0c6"
+    REDIRECT_URI = "https://local:3000/"
+    AUTH_ENDPOINT = "https://accounts.spotify.com/authorize"
+    RESPONSE_TYPE = "token"
