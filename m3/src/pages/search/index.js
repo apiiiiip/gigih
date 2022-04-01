@@ -1,45 +1,58 @@
-import React from "react";
-import {Component} from 'react';
+import React, {useState, useCallback} from "react";
 import '../../../src/App.css';
+import Searchbar from "../../components/searchBar";
 
-class Search extends Component {
-   state = {searchResult:[], searchQuery:"" };
 
-   handleSearch = async() => {
+function Search() {
+    const [searchResult, setsearchResult] = useState([]);
+    const [searchQuery, setsearchQuery] = useState("");
 
+
+// class Search extends Component {
+//    state = {searchResult:[], searchQuery:"" };
+
+   const handleSearch =  useCallback(async(e) => {
+        e.preventDefault()
         await fetch(
-            "https://api.giphy.com/v1/gifs/search?api_key=YO4YioSM96mNcIXw257555iXcp4iIm9U&q=cartoon&limit=12&offset=0&rating=g&lang=en"
+            `https://api.giphy.com/v1/gifs/search?api_key=YO4YioSM96mNcIXw257555iXcp4iIm9U&q=${searchQuery}&limit=12&offset=0&rating=g&lang=en`
             )
                 .then((response) => response.json())
-                .then((gifsData) => this.setState({searchResult: gifsData.data}));
-    };
+                .then((gifsData) => setsearchResult(gifsData.data)
+                )}
+   ,[searchQuery])
 
-    render() {
+//    useEffect(() => {
+//        handleSearch()
+//    }, [])
         return(
             <div>
                 <div>
-                    <input
-                        onChange = {(e) => this.setState({searchQuery: e.target.value})}
+                    <Searchbar
+                        handleInputChange={(value) => setsearchQuery(value)}
+                        handleSearch = {handleSearch}
                     />
-                    <button
-                        onClick = {this.handleSearch}
-                    >Search</button>
-
                     <div>
-                        {this.state.searchResult.map((gif) => (
+                        {searchResult.map((gif) => (
                             <div key={gif.id}>
                                 <p>{gif.title}</p>
-                                <img src={gif.images.original.url}/>
+                                <img src={gif.images.original.url} alt="foto animasi"/>
 
                             </div>
                         ))}
                     </div>
                 </div>
             </div>
+                
         )
-    }
-
-
+     
+    
 }
+
+
+
+
+
+
+
 
 export default Search;
