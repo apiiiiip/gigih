@@ -2,10 +2,12 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body{
+  background-color: #61dafb;
+  text-align: center;
+  margin-left: 80px;
 }
+
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
@@ -14,34 +16,37 @@
 }
 
 
-table,td,th{
-  border: 1px solid black;
-  width : 500px;
-  text-align : center;
-  border-collapse: collapse;
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  background-color: aliceblue;
+  transition: 0.3s;
+  width: 300px;
+  height: 350px;
+  float: left;
+  margin: 20px 20px 20px 20px;
+}
+.card img{
+  padding-top: 40px;
 }
 
-table{
-  margin: auto;
-  margin-top: 100px;
-  margin-bottom: 100px;
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.container {
+  padding-top: 2px;
+  padding-bottom: 2px;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+#searchcontainer{
+  margin-top: 50px;
+  margin-bottom:50px;
 }
 
-.App-link {
-  color: #61dafb;
+#type{
+  width: 200px;
 }
-
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

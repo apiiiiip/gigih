@@ -1,17 +1,30 @@
 import React from "react";
 import '../App.css';
-import {Component} from 'react';
+//import {Component} from 'react';
 
 
 function Search({toggleFunction, handleSearch}) {
+ 
     return(
-        <div>
-           <input onChange = {(e) => toggleFunction(e.target.value)}/>
-           <button onClick = {() => {handleSearch()} }>Search</button> 
+        <div id="searchcontainer">
+           <input id="type" onChange = {(e) => toggleFunction(e.target.value)} placeholder="Artists, Songs, or Something ..."/>
+           <button id="btnsearch" onClick = {() => {handleSearch()} } >Search</button> 
         </div>
+        
     )
+    
 
 }
+
+
+// let input = document.getElementById("type");
+// input.addEventListener("keyup",
+// function(event) {
+//     if (event.keyCode === 13) {
+//         event.preventDefault();
+// document.getElementById("btnsearch").click();
+//     }
+// });
 
 
 

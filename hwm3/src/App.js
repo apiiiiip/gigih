@@ -16,10 +16,19 @@ function App() {
   const [access_token, set_access_token] = useState("");
   const [searchResult, setsearchResult] = useState([]);
   const [searchQuery, setsearchQuery] = useState("");
+  
 
 
+  const [listID, setlistID] = useState([]);
 
+  console.log(listID)
 
+  const addID = (id) => {
+    setlistID((prevState) => [...prevState, id])
+  }
+  const deleteID = (id) => {
+    setlistID((prevState) => prevState.filter((selectedID) => selectedID !== id))
+  }
 
   const handleAccessToken = () => {
     window.location.href = "https://accounts.spotify.com/authorize?client_id=0351cc6087e444268ec2ff1e557de0c6&scopes=playlist-modify-private&response_type=token&redirect_uri=http://localhost:3000"
@@ -51,48 +60,36 @@ function App() {
     if (token) {
       set_access_token(token);
     }},[])
-  
+    
     return(
       <div className="App">
         {
-          access_token === "" ? <button onClick={handleAccessToken()}>Login to Spotify</button> : <Search 
+          access_token === "" ? <button onClick={handleAccessToken}>Login to Spotify</button> : <Search 
           handleSearch={handleSearch} 
           toggleFunction={(value) => setsearchQuery(value)} />
         }
         {
           searchResult.map((item) =>{
             return(
-              <table>
-                <tbody>
-                  <tr>
-                    <th>Title</th>
-                    <th>Artists</th>
-                    <th>Album</th>
-                    <th>Release Date</th>
-                  </tr>
-                  <tr>
-                    <td>
-                      <p>title={item.name}</p>
-                    </td>
-                    <td>
-                      <p>artist={item.artists[0].name}</p>
-                    </td>
-                    <td>
-                      <img src={item.images[2].url} alt="foto" />
-                    </td>
-                    <td>
-                      <p>date={item.release_date}</p>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-              
+              <div className='card'>
+                <img src={item.images[2].url} alt="foto"/>
+                <div className='container'>
+                  <div key={item.id}></div>
+                  <p>{item.name}</p>
+                  <p>{item.artists[0].name}</p>
+                  <p>{item.release_date}</p>
+                 <button onClick={() => listID.includes(item.id) ? deleteID(item.id) : addID(item.id) }>
+                   {listID.includes(item.id) ? "Deselect" : "Select"}
+                  </button>
+                </div>
+              </div>
             )
           })
         }
       </div>
     );
 }
+
 
 
 export default App;
