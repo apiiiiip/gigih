@@ -8,13 +8,26 @@ body{
   margin-left: 80px;
 }
 
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.Login {
+  display: grid;
+  place-items: center;
+  background-color: #61dafb;
 }
 
+.Login > button {
+  padding: 20px;
+  border-radius: 99px;
+  font-weight: 600;
+  color: white;
+  text-decoration: none;
+  background-color: #1db954;
+  place-items: center;
+
+}
+
+.Login > button:hover{
+  cursor: pointer;
+}
 
 .card {
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
@@ -44,14 +57,10 @@ body{
   margin-bottom:50px;
 }
 
+.selectbutton:hover{
+  cursor: pointer;
+}
+
 #type{
   width: 200px;
-}
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
 }

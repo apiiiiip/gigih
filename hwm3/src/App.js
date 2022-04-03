@@ -1,9 +1,9 @@
 //import { Component } from "react";
 import '../src/App.css'
-import React from "react";
+import React,{createContext} from "react";
 import { useState, useEffect} from "react";
-//import axios from "axios";
-import Search from "./pages/searchbutton";
+import Search from "./Pages/searchbutton";
+import axios from 'axios';
 
 //const CLIENT_ID = process.env.CLIENT_ID
 
@@ -11,33 +11,22 @@ import Search from "./pages/searchbutton";
 
 // class App extends Component {
 //   state = {access_token:"", searchResult:[], searchQuery:"" };
+export const userID = createContext();
 
 function App() {
   const [access_token, set_access_token] = useState("");
   const [searchResult, setsearchResult] = useState([]);
   const [searchQuery, setsearchQuery] = useState("");
-  
-
-
-  const [listID, setlistID] = useState([]);
-
-  console.log(listID)
-
-  const addID = (id) => {
-    setlistID((prevState) => [...prevState, id])
-  }
-  const deleteID = (id) => {
-    setlistID((prevState) => prevState.filter((selectedID) => selectedID !== id))
-  }
+  const [userProfile, setuserProfile] = useState({});
 
   const handleAccessToken = () => {
-    window.location.href = "https://accounts.spotify.com/authorize?client_id=0351cc6087e444268ec2ff1e557de0c6&scopes=playlist-modify-private&response_type=token&redirect_uri=http://localhost:3000"
+    window.location.href = "https://accounts.spotify.com/authorize?client_id=0351cc6087e444268ec2ff1e557de0c6&scope=playlist-modify-private&response_type=token&redirect_uri=http://localhost:3000"
   };
 
   const handleSearch = async() => {
  
     await fetch(
-        `https://api.spotify.com/v1/search?q=${searchQuery.replaceAll(" ","+" )}&type=album&limit=12`,{
+        `https://api.spotify.com/v1/search?q=${searchQuery.replaceAll(" ","+" )}&type=track&limit=12`,{
             method: "GET",
             headers: {
                 Authorization: `Bearer ${access_token}`
@@ -46,8 +35,19 @@ function App() {
         
         )
             .then((res) => res.json())
-            .then((res) => setsearchResult(res.albums.items));
+            .then((res) => setsearchResult(res.tracks.items))
       };
+
+  const handleGetUserProfile = async(token) => {
+    await axios({
+      method: "GET",
+      url: "https://api.spotify.com/v1/me",
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
+      .then((res) => setuserProfile(res.data))
+  }
 
   useEffect(() => {
     const token =
@@ -58,137 +58,51 @@ function App() {
         .find((elem) => elem.startsWith("access_token"))
         .replace("access_token=", "");
     if (token) {
+      handleGetUserProfile(token);
       set_access_token(token);
     }},[])
+
+
+  const [listID, setlistID] = useState([]); 
     
+  const addID = (id) => {
+    setlistID((prevState) => [...prevState, id])
+  }
+  const deleteID = (id) => {
+    setlistID((prevState) => prevState.filter((selectedID) => selectedID !== id))
+  }
     return(
-      <div className="App">
-        {
-          access_token === "" ? <button onClick={handleAccessToken}>Login to Spotify</button> : <Search 
-          handleSearch={handleSearch} 
-          toggleFunction={(value) => setsearchQuery(value)} />
-        }
-        {
-          searchResult.map((item) =>{
-            return(
-              <div className='card'>
-                <img src={item.images[2].url} alt="foto"/>
-                <div className='container'>
-                  <div key={item.id}></div>
-                  <p>{item.name}</p>
-                  <p>{item.artists[0].name}</p>
-                  <p>{item.release_date}</p>
-                 <button onClick={() => listID.includes(item.id) ? deleteID(item.id) : addID(item.id) }>
-                   {listID.includes(item.id) ? "Deselect" : "Select"}
-                  </button>
-                </div>
-              </div>
-            )
-          })
-        }
-      </div>
-    );
-}
-
-
-
-export default App;
-
-// import { Component } from "react";
-// import '../src/App.css'
-// import React from "react";
-// //import { useState } from "react";
-// //import axios from "axios";
-// import Search from "./pages/searchbutton";
-
-// //const CLIENT_ID = process.env.CLIENT_ID
-
-// //const CLIENT_SECRET = process.env.CLIENT_SECRET
-
-// class App extends Component {
-//   state = {access_token:"", searchResult:[], searchQuery:"" };
-
-
-
-
-//   handleAccessToken = () => {
-//     window.location.href = "https://accounts.spotify.com/authorize?client_id=0351cc6087e444268ec2ff1e557de0c6&scopes=playlist-modify-private&response_type=token&redirect_uri=http://localhost:3000"
-//   }
-
-//   handleSearch = async() => {
- 
-//     await fetch(
-//         `https://api.spotify.com/v1/search?q=${this.state.searchQuery.replaceAll(" ","+" )}&type=album&limit=12`,{
-//             method: "GET",
-//             headers: {
-//                 Authorization: `Bearer ${this.state.access_token}`
-//             }
-//         }
-        
-//         )
-//             .then((res) => res.json())
-//             .then((res) => this.setState({searchResult: res.albums.items}));
-//   }
-
-//   componentDidMount() {
-//     const token =
-//       window.location.hash &&
-//       window.location.hash
-//         .substring(1)
-//         .split("&")
-//         .find((elem) => elem.startsWith("access_token"))
-//         .replace("access_token=", "");
-//     if (token) {
-//       this.setState({ access_token: token });
-//     }
-//   }
-
-//   render() {
-//     console.log(this.state.searchResult)
+      <userID.Provider value={[userProfile.id , access_token, listID]}>
       
-//     return(
-//       <div className="App">
-//         {
-//           this.state.access_token === "" ? <button onClick={this.handleAccessToken}>Login to Spotify</button> : <Search 
-//           handleSearch={this.handleSearch} 
-//           toggleFunction={(value) => this.setState({searchQuery:value})} />
-
-          
-//         }
-//         {
-//           this.state.searchResult.map((item) =>{
-//             return(
-//               <table>
-//                 <tbody>
-//                   <tr>
-//                     <th>Title</th>
-//                     <th>Artists</th>
-//                     <th>Album</th>
-//                     <th>Release Date</th>
-//                   </tr>
-//                   <tr>
-//                     <td>
-//                       <p>title={item.name}</p>
-//                     </td>
-//                     <td>
-//                       <p>artist={item.artists[0].name}</p>
-//                     </td>
-//                     <td>
-//                       <img src={item.images[2].url} alt="foto" />
-//                     </td>
-//                     <td>
-//                       <p>date={item.release_date}</p>
-//                     </td>
-//                   </tr>
-//                 </tbody>
-//               </table>
-              
-//             )
-//           })
-//         }
-//       </div>
-//     )
-//   };
-// }
-
-// export default App;
+        <div className="App">
+          <div className='Login'>
+            {
+              access_token === "" ?
+              <button onClick={handleAccessToken}>Login to Spotify</button> 
+              : <Search 
+              handleSearch={handleSearch} 
+              toggleFunction={(value) => setsearchQuery(value)} />
+            }
+          </div>
+            {
+              searchResult.map((item) =>{
+                return(
+                  <div className='card'>
+                    <img src={item.album.images[2].url} alt="foto"/>
+                    <div className='container'>
+                      <div key={item.id}></div>
+                      <p>{item.name}</p>
+                      <p>{item.artists[0].name}</p>
+                      <p>{item.album.release_date}</p>
+                      <button className='selectbutton' onClick={() => listID.includes(item.id) ? deleteID(item.id) : addID(item.id) }>
+                      {listID.includes(item.id) ? "Deselect" : "Select"}</button>
+                    </div>
+                  </div>
+                )
+              })
+            }  
+        </div>
+      </userID.Provider>
+    )} 
+    
+export default App;

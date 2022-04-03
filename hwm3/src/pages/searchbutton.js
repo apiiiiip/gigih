@@ -1,5 +1,6 @@
 import React from "react";
 import '../App.css';
+import Playlist from "./playlist";
 //import {Component} from 'react';
 
 
@@ -8,8 +9,12 @@ function Search({toggleFunction, handleSearch}) {
     return(
         <div id="searchcontainer">
            <input id="type" onChange = {(e) => toggleFunction(e.target.value)} placeholder="Artists, Songs, or Something ..."/>
-           <button id="btnsearch" onClick = {() => {handleSearch()} } >Search</button> 
+           <button id="btnsearch" onClick = {() => {handleSearch()} }> Search </button>
+           <Playlist />
         </div>
+        
+         
+        
         
     )
     
