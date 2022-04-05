@@ -1,0 +1,66 @@
+.App {
+  text-align: center;
+}
+
+body{
+  background-color: #61dafb;
+  text-align: center;
+  margin-left: 80px;
+}
+
+.Login {
+  display: grid;
+  place-items: center;
+  background-color: #61dafb;
+}
+
+.Login > button {
+  padding: 20px;
+  border-radius: 99px;
+  font-weight: 600;
+  color: white;
+  text-decoration: none;
+  background-color: #1db954;
+  place-items: center;
+
+}
+
+.Login > button:hover{
+  cursor: pointer;
+}
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  background-color: aliceblue;
+  transition: 0.3s;
+  width: 300px;
+  height: 350px;
+  float: left;
+  margin: 20px 20px 20px 20px;
+}
+.card img{
+  padding-top: 40px;
+}
+
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.container {
+  padding-top: 2px;
+  padding-bottom: 2px;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+#searchcontainer{
+  margin-top: 50px;
+  margin-bottom:50px;
+}
+
+.selectbutton:hover{
+  cursor: pointer;
+}
+
+#type{
+  width: 200px;
+}
