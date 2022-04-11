@@ -1,29 +1,34 @@
 import React from "react";
-import '../App.css';
+import "../App.css";
 import Playlist from "./playlist";
 //import {Component} from 'react';
-import {changeSearch} from "../redux/Searchslice";
-import {useDispatch} from "react-redux";
+import { changeSearch } from "../redux/Searchslice";
+import { useDispatch } from "react-redux";
 
+// eslint-disable-next-line react/prop-types
+function Search({ handleSearch }) {
+  const dispatch = useDispatch();
 
-function Search({handleSearch}) {
-    const dispatch = useDispatch();
- 
-    return(
-        <div id="searchcontainer">
-           <input id="type" onChange= {(e) => dispatch(changeSearch(e.target.value))} placeholder="Artists, Songs, or Something ..."/>
-           <button id="btnsearch" onClick = {() => {handleSearch()} }> Search </button>
-           <Playlist />
-        </div>
-        
-         
-        
-        
-    )
-    
-
+  return (
+    <div id="searchcontainer">
+      <input
+        id="type"
+        onChange={(e) => dispatch(changeSearch(e.target.value))}
+        placeholder="Artists, Songs, or Something ..."
+      />
+      <button
+        id="btnsearch"
+        onClick={() => {
+          handleSearch();
+        }}
+      >
+        {" "}
+        Search{" "}
+      </button>
+      <Playlist />
+    </div>
+  );
 }
-
 
 // let input = document.getElementById("type");
 // input.addEventListener("keyup",
@@ -34,18 +39,14 @@ function Search({handleSearch}) {
 //     }
 // });
 
-
-
-
-
 // class Search extends Component {
 //     constructor(props){
 //         super(props)
-        
+
 //         this.toggleFunction = props.toggleFunction
 //         this.handleSearch = props.handleSearch
 //     }
- 
+
 //      render() {
 //          return(
 //              <div>
@@ -56,17 +57,14 @@ function Search({handleSearch}) {
 //                      <button
 //                          onClick = {() => {this.handleSearch()} }
 //                      >Search</button>
- 
+
 //                      <div>
-                        
+
 //                      </div>
 //                  </div>
 //              </div>
 //          )
 //      }
 // }
- 
- 
- 
- 
- export default Search;
+
+export default Search;

@@ -5,7 +5,6 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link,
   Redirect,
 } from "react-router-dom";
 import Dashboard from "./Pages/Homepage";
@@ -14,7 +13,7 @@ import Playlist from "./Pages/playlist";
 
 export default function App() {
   const isLoggedIn = localStorage.getItem("isLoggedIn");
-  console.log(isLoggedIn);
+  // console.log(isLoggedIn);
   return (
     <Router>
       <Switch>
@@ -30,12 +29,12 @@ export default function App() {
         </Route>
       </Switch>
       {/* <div>
-        <Link to="/Homepage" component={Dashboard}></Link>
-      </div>
-      <Switch>
-        <Route path="/"></Route>
-        <Route></Route>
-      </Switch> */}
+    //     <Link to="/Homepage" component={Dashboard}></Link>
+    //   </div>
+    //   <Switch>
+    //     <Route path="/"></Route>
+    //     <Route></Route>
+    //   </Switch> */}
     </Router>
   );
 }

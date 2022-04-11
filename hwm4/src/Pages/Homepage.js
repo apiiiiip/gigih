@@ -78,7 +78,7 @@ function Dashboard() {
     );
   };
 
-  // console.log(listID)
+  // console.log(listID);
   return (
     <userID.Provider value={[userProfile.id, access_token, listID]}>
       <div className="App">
@@ -91,10 +91,10 @@ function Dashboard() {
         </div>
         {searchResult.map((item) => {
           return (
-            <div className="card">
+            <div key={item.id} className="card">
               <img src={item.album.images[2].url} alt="foto" />
               <div className="container">
-                <div key={item.id}></div>
+                <div></div>
                 <p>{item.name}</p>
                 <p>{item.artists[0].name}</p>
                 <p>{item.album.release_date}</p>

@@ -3,7 +3,6 @@ import "../App.css";
 import axios from "axios";
 import { userID } from "../Pages/Homepage";
 import Playlistlist from "../components/Addsong";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 function Playlist() {
   const [userIDAja, access_token, listID] = useContext(userID);
@@ -61,7 +60,6 @@ function Playlist() {
 
   return (
     <div>
-      <Router></Router>
       <div>
         <form onSubmit={handleSubmit}>
           <button className="createButton" onClick={showFormHandler}>
