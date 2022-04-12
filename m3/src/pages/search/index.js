@@ -20,7 +20,7 @@ function Search() {
                 .then((gifsData) => setsearchResult(gifsData.data)
                 )}
    ,[searchQuery])
-
+console.log(searchResult)
 //    useEffect(() => {
 //        handleSearch()
 //    }, [])

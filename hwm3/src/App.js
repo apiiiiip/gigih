@@ -1,7 +1,6 @@
 //import { Component } from "react";
 import '../src/App.css'
-import React,{createContext} from "react";
-import { useState, useEffect} from "react";
+import React,{createContext, useState, useEffect, useCallback} from "react";
 import Search from "./Pages/searchbutton";
 import axios from 'axios';
 
@@ -23,7 +22,7 @@ function App() {
     window.location.href = "https://accounts.spotify.com/authorize?client_id=0351cc6087e444268ec2ff1e557de0c6&scope=playlist-modify-private&response_type=token&redirect_uri=http://localhost:3000"
   };
 
-  const handleSearch = async() => {
+  const handleSearch = useCallback(async() => {
  
     await fetch(
         `https://api.spotify.com/v1/search?q=${searchQuery.replaceAll(" ","+" )}&type=track&limit=12`,{
@@ -36,7 +35,8 @@ function App() {
         )
             .then((res) => res.json())
             .then((res) => setsearchResult(res.tracks.items))
-      };
+      },[searchQuery, access_token]);
+      // console.log(searchResult)
 
   const handleGetUserProfile = async(token) => {
     await axios({
@@ -48,6 +48,7 @@ function App() {
     })
       .then((res) => setuserProfile(res.data))
   }
+  // console.log(userProfile)
 
   useEffect(() => {
     const token =
@@ -71,6 +72,8 @@ function App() {
   const deleteID = (id) => {
     setlistID((prevState) => prevState.filter((selectedID) => selectedID !== id))
   }
+
+  // console.log(listID)
     return(
       <userID.Provider value={[userProfile.id , access_token, listID]}>
       

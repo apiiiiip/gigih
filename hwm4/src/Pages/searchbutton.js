@@ -10,7 +10,7 @@ function Search({ handleSearch }) {
   const dispatch = useDispatch();
 
   return (
-    <div id="searchcontainer">
+    <div className="searchcontainer">
       <input
         id="type"
         onChange={(e) => dispatch(changeSearch(e.target.value))}

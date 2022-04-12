@@ -60,6 +60,7 @@ function Playlist() {
     })
     .then((res) => setCreatedPlaylist(prevState => [...prevState, res.data ]))
   };
+
   return (
     <div>
       <form

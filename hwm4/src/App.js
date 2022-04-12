@@ -9,6 +9,7 @@ import {
 } from "react-router-dom";
 import Dashboard from "./Pages/Homepage";
 import Playlist from "./Pages/playlist";
+import "./App.css";
 // import Mainroom from "./Pages/Mainroom";
 // import { useSelector } from "react-redux";
 // import {useState} from 'react'
@@ -62,22 +63,24 @@ export default function App() {
   const isLoggedIn = localStorage.getItem("isLoggedIn");
   // console.log(isLoggedIn);
   return (
-    <Router>
-      <Switch>
-        <Route path="/create-playlist">
-          {isLoggedIn ? (
-            <Playlist />
-          ) : (
-            <Redirect exact from="/" to="/create-playlist" />
-          )}
-        </Route>
-        <Route path="/">
-          {!isLoggedIn ? <Dashboard /> : <Redirect to="/create-playlist" />}
-        </Route>
-        <Route exact path="/">
-          <Dashboard />
-        </Route>
-      </Switch>
-    </Router>
+    <div className="awal">
+      <Router>
+        <Switch>
+          <Route path="/create-playlist">
+            {isLoggedIn ? (
+              <Playlist />
+            ) : (
+              <Redirect exact from="/" to="/create-playlist" />
+            )}
+          </Route>
+          <Route path="/">
+            {!isLoggedIn ? <Dashboard /> : <Redirect to="/create-playlist" />}
+          </Route>
+          <Route exact path="/">
+            <Dashboard />
+          </Route>
+        </Switch>
+      </Router>
+    </div>
   );
 }

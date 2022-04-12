@@ -1,65 +1,259 @@
 .App {
   text-align: center;
 }
-
+html,
 body {
-  background-color: #61dafb;
-  text-align: center;
-  margin-left: 80px;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
 }
-
 .Login {
-  display: grid;
-  place-items: center;
-  background-color: #61dafb;
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 220vh;
 }
 
 .Login > button {
   padding: 20px;
   border-radius: 99px;
+  border-style: solid;
+  border-color: #61dafb;
+  border-width: medium;
   font-weight: 600;
-  color: white;
+  color: #dcf8fa;
   text-decoration: none;
-  background-color: #1db954;
-  place-items: center;
+  background-color: black;
+  font-weight: 600;
+  box-shadow: 0 7px rgb(77, 77, 77);
 }
 
 .Login > button:hover {
   cursor: pointer;
+  background-color: #20292a;
+}
+.Login > button:active {
+  background-color: #416263;
+  box-shadow: 0 5px black;
+  transform: translateY(3px);
+}
+
+.searchcontainer {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: black;
+  align-items: flex-start;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+#type {
+  margin-top: 20px;
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-bottom: 8px;
+  height: 2em;
+  width: 18em;
+  background-color: #243c3d;
+  border-radius: 17px;
+  border-style: solid;
+  border-color: #61dafb;
+  color: #dcf8fa;
+  border-width: medium;
+  font-weight: 600;
+}
+::placeholder {
+  padding-left: 10px;
+  color: whitesmoke;
+  opacity: 0.65;
+}
+#btnsearch {
+  margin-left: 95px;
+  margin-bottom: 50px;
+  border-radius: 12px;
+  border-style: solid;
+  border-color: #61dafb;
+  border-width: medium;
+  background-color: #243c3d;
+  color: #dcf8fa;
+  width: 100px;
+  font-weight: 600;
+  box-shadow: 0 5px rgb(134, 131, 131);
+}
+#btnsearch:hover {
+  background-color: #416263;
+  cursor: pointer;
+}
+#btnsearch:active {
+  background-color: #416263;
+  box-shadow: 0 5px black;
+  transform: translateY(3px);
+}
+
+.createButton {
+  margin-left: 65px;
+  margin-bottom: 20px;
+  border-radius: 12px;
+  border-style: solid;
+  border-color: #61dafb;
+  border-width: medium;
+  background-color: #243c3d;
+  color: #dcf8fa;
+  width: 150px;
+  font-weight: 600;
+  box-shadow: 0 5px rgb(134, 131, 131);
+}
+.createButton:hover {
+  background-color: #416263;
+  cursor: pointer;
+}
+.createButton:active {
+  background-color: #416263;
+  box-shadow: 0 5px black;
+  transform: translateY(3px);
+}
+
+.inputPlaylist {
+  margin-left: 40px;
+  margin-bottom: 20px;
+  border-radius: 12px;
+  border-style: solid;
+  border-color: #61dafb;
+  border-width: medium;
+  background-color: #243c3d;
+  color: #dcf8fa;
+  width: 200px;
+  font-weight: 600;
+}
+.inputname {
+  margin-bottom: 20px;
+  border-radius: 12px;
+  border-style: solid;
+  border-color: #61dafb;
+  border-width: medium;
+  background-color: #243c3d;
+  color: #dcf8fa;
+  width: 170px;
+  font-weight: 600;
+}
+.inputdesc {
+  margin-bottom: 20px;
+  border-radius: 12px;
+  border-style: solid;
+  border-color: #61dafb;
+  border-width: medium;
+  background-color: #243c3d;
+  color: #dcf8fa;
+  width: 170px;
+  font-weight: 600;
+}
+.btnsubmitplaylist {
+  margin-bottom: 20px;
+  border-radius: 12px;
+  border-style: solid;
+  border-color: #61dafb;
+  border-width: medium;
+  background-color: #243c3d;
+  color: #dcf8fa;
+  font-weight: 600;
+  box-shadow: 0 5px black;
+}
+.btnsubmitplaylist:hover {
+  background-color: #416263;
+  cursor: pointer;
+}
+.btnsubmitplaylist:active {
+  background-color: #416263;
+  box-shadow: 0 5px #243c3d;
+  transform: translateY(3px);
+}
+
+.searchcard {
+  margin-bottom: 100px;
+  height: 0%;
 }
 
 .card {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  background-color: aliceblue;
+  border-color: #61dafb;
+  border-width: medium;
+  border-style: solid;
+  border-radius: 10px;
+  background-color: rgb(18, 16, 31);
   transition: 0.3s;
-  width: 300px;
-  height: 350px;
+  width: 200px;
+  height: 150px;
   float: left;
   margin: 20px 20px 20px 20px;
+  font-size: 10px;
+  color: #dcf8fa;
+  font-weight: 600;
 }
-.card img {
-  padding-top: 40px;
-}
-
-.card:hover {
-  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
-}
-
 .container {
-  padding-top: 2px;
-  padding-bottom: 2px;
-  padding-left: 30px;
-  padding-right: 30px;
+  display: grid;
 }
-#searchcontainer {
-  margin-top: 50px;
-  margin-bottom: 50px;
+.songname {
+  margin: 0%;
+  font-size: 10px;
+}
+.artistname {
+  margin: 0%;
+  font-size: 10px;
+}
+.releasedate {
+  margin: 0%;
+  font-size: 10px;
 }
 
-.selectbutton:hover {
+.createdplaylist {
+  color: aliceblue;
+  margin: 0%;
+}
+
+.addButton {
+  margin-left: 20px;
+  margin-bottom: 20px;
+  border-radius: 12px;
+  border-style: solid;
+  border-color: #61dafb;
+  border-width: medium;
+  background-color: #243c3d;
+  color: #dcf8fa;
+  width: 100px;
+  font-weight: 600;
+  box-shadow: 0 5px rgb(134, 131, 131);
+}
+.addButton:hover {
+  background-color: #416263;
   cursor: pointer;
 }
+.addButton:active {
+  background-color: #416263;
+  box-shadow: 0 5px black;
+  transform: translateY(3px);
+}
 
-#type {
-  width: 200px;
+.selectbutton {
+  margin-left: 50px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  border-radius: 12px;
+  border-style: solid;
+  border-color: #61dafb;
+  border-width: medium;
+  background-color: #243c3d;
+  color: #dcf8fa;
+  width: 100px;
+  font-weight: 600;
+  box-shadow: 0 3px rgb(134, 131, 131);
+}
+.selectbutton:hover {
+  background-color: #416263;
+  cursor: pointer;
+}
+.selectbutton:active {
+  background-color: #416263;
+  box-shadow: 0 5px black;
+  transform: translateY(3px);
 }

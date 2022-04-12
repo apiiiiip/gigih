@@ -88,38 +88,40 @@ function Dashboard() {
     <userID.Provider
       value={[access_token, listID, addID, deleteID, userProfile.id]}
     >
-      <div className="App">
-        <div className="Login">
-          {access_token === "" ? (
-            <button onClick={handleAccessToken}>Login to Spotify</button>
-          ) : (
-            <Mainroom />
-          )}
-        </div>
-        {/* {searchResult.map((item) => {
-          return (
-            <div key={item.id} className="card">
-              <img src={item.album.images[2].url} alt="foto" />
-              <div className="container">
-                <div></div>
-                <p>{item.name}</p>
-                <p>{item.artists[0].name}</p>
-                <p>{item.album.release_date}</p>
-                <button
-                  className="selectbutton"
-                  onClick={() =>
-                    listID.includes(item.id)
-                      ? deleteID(item.id)
-                      : addID(item.id)
-                  }
-                >
-                  {listID.includes(item.id) ? "Deselect" : "Select"}
-                </button>
+      <body>
+        <div className="App">
+          <div className="Login">
+            {access_token === "" ? (
+              <button onClick={handleAccessToken}>Login to Spotify</button>
+            ) : (
+              <Mainroom />
+            )}
+          </div>
+          {/* {searchResult.map((item) => {
+            return (
+              <div key={item.id} className="card">
+                <img src={item.album.images[2].url} alt="foto" />
+                <div className="container">
+                  <div></div>
+                  <p>{item.name}</p>
+                  <p>{item.artists[0].name}</p>
+                  <p>{item.album.release_date}</p>
+                  <button
+                    className="selectbutton"
+                    onClick={() =>
+                      listID.includes(item.id)
+                        ? deleteID(item.id)
+                        : addID(item.id)
+                    }
+                  >
+                    {listID.includes(item.id) ? "Deselect" : "Select"}
+                  </button>
+                </div>
               </div>
-            </div>
-          );
-        })} */}
-      </div>
+            );
+          })} */}
+        </div>
+      </body>
     </userID.Provider>
   );
 }

@@ -27,20 +27,19 @@ function Mainroom() {
   }, [searchValue, access_token]);
 
   return (
-    <div>
+    <div className="mainsearch">
       <div>
         <Search handleSearch={handleSearch} />
       </div>
-      <div id="searchcontainer">
+      <div className="searchcard">
         {searchResult.map((item) => {
           return (
             <div key={item.id} className="card">
               <img src={item.album.images[2].url} alt="foto" />
               <div className="container">
-                <div></div>
-                <p>{item.name}</p>
-                <p>{item.artists[0].name}</p>
-                <p>{item.album.release_date}</p>
+                <p className="songname">{item.name}</p>
+                <p className="artistname">{item.artists[0].name}</p>
+                <p className="releasedate">{item.album.release_date}</p>
                 <button
                   className="selectbutton"
                   onClick={() =>

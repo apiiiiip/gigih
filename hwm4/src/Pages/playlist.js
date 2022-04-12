@@ -72,6 +72,7 @@ function Playlist() {
             <label>
               Playlist Name <br></br>
               <input
+                className="inputname"
                 name="name"
                 type="text"
                 placeholder="Playlist Name"
@@ -83,6 +84,7 @@ function Playlist() {
             <label>
               Playlist Description <br></br>
               <input
+                className="inputdesc"
                 name="desc"
                 type="text"
                 placeholder="Description"
@@ -90,13 +92,17 @@ function Playlist() {
               />
               <br></br>
             </label>
-            <button type="submit" onClick={handleSubmit}>
+            <button
+              className="btnsubmitplaylist"
+              type="submit"
+              onClick={handleSubmit}
+            >
               Submit
             </button>
           </form>
         )}
       </div>
-      <div>
+      <div className="createdplaylist">
         {createdPlaylist &&
           createdPlaylist.map((playlist) => (
             <Playlistlist

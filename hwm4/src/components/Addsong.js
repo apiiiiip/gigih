@@ -6,6 +6,7 @@ function Playlistlist({ playlistName, id, addItem }) {
     <div>
       <h3>{playlistName}</h3>
       <button
+        className="addButton"
         onClick={() => {
           alert("Song added to playlist");
           addItem(id);
