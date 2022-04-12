@@ -1,9 +1,11 @@
 //import { Component } from "react";
 import "../App.css";
-import React, { createContext, useState, useEffect, useCallback } from "react";
-import Search from "./searchbutton";
+import React, { createContext, useState, useEffect } from "react";
+// import Search from "./searchbutton";
 import axios from "axios";
-import { useSelector } from "react-redux";
+import Mainroom from "./Mainroom";
+import { useSelector, useDispatch } from "react-redux";
+import { setAccessToken } from "../redux/Accountslice";
 
 //const CLIENT_ID = process.env.CLIENT_ID
 
@@ -14,9 +16,11 @@ import { useSelector } from "react-redux";
 export const userID = createContext();
 
 function Dashboard() {
-  const [access_token, set_access_token] = useState("");
-  const [searchResult, setsearchResult] = useState([]);
-  const searchValue = useSelector((state) => state.search.searchValue);
+  const dispatch = useDispatch();
+  // const [access_token, set_access_token] = useState("");
+  const access_token = useSelector((state) => state.account.accessToken);
+  // const [searchResult, setsearchResult] = useState([]);
+  // const searchValue = useSelector((state) => state.search.searchValue);
   const [userProfile, setuserProfile] = useState({});
 
   const handleAccessToken = () => {
@@ -24,22 +28,22 @@ function Dashboard() {
       "https://accounts.spotify.com/authorize?client_id=0351cc6087e444268ec2ff1e557de0c6&scope=playlist-modify-private&response_type=token&redirect_uri=http://localhost:3000";
   };
 
-  const handleSearch = useCallback(async () => {
-    await fetch(
-      `https://api.spotify.com/v1/search?q=${searchValue.replaceAll(
-        " ",
-        "+"
-      )}&type=track&limit=12`,
-      {
-        method: "GET",
-        headers: {
-          Authorization: `Bearer ${access_token}`,
-        },
-      }
-    )
-      .then((res) => res.json())
-      .then((res) => setsearchResult(res.tracks.items));
-  }, [searchValue, access_token]);
+  // const handleSearch = useCallback(async () => {
+  //   await fetch(
+  //     `https://api.spotify.com/v1/search?q=${searchValue.replaceAll(
+  //       " ",
+  //       "+"
+  //     )}&type=track&limit=12`,
+  //     {
+  //       method: "GET",
+  //       headers: {
+  //         Authorization: `Bearer ${access_token}`,
+  //       },
+  //     }
+  //   )
+  //     .then((res) => res.json())
+  //     .then((res) => setsearchResult(res.tracks.items));
+  // }, [searchValue, access_token]);
   // console.log(searchResult)
 
   const handleGetUserProfile = async (token) => {
@@ -63,7 +67,8 @@ function Dashboard() {
         .replace("access_token=", "");
     if (token) {
       handleGetUserProfile(token);
-      set_access_token(token);
+      // set_access_token(token);
+      dispatch(setAccessToken(token));
     }
   }, []);
 
@@ -80,16 +85,18 @@ function Dashboard() {
 
   // console.log(listID);
   return (
-    <userID.Provider value={[userProfile.id, access_token, listID]}>
+    <userID.Provider
+      value={[access_token, listID, addID, deleteID, userProfile.id]}
+    >
       <div className="App">
         <div className="Login">
           {access_token === "" ? (
             <button onClick={handleAccessToken}>Login to Spotify</button>
           ) : (
-            <Search handleSearch={handleSearch} />
+            <Mainroom />
           )}
         </div>
-        {searchResult.map((item) => {
+        {/* {searchResult.map((item) => {
           return (
             <div key={item.id} className="card">
               <img src={item.album.images[2].url} alt="foto" />
@@ -111,7 +118,7 @@ function Dashboard() {
               </div>
             </div>
           );
-        })}
+        })} */}
       </div>
     </userID.Provider>
   );

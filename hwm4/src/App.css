@@ -2,7 +2,7 @@
   text-align: center;
 }
 
-body{
+body {
   background-color: #61dafb;
   text-align: center;
   margin-left: 80px;
@@ -22,15 +22,14 @@ body{
   text-decoration: none;
   background-color: #1db954;
   place-items: center;
-
 }
 
-.Login > button:hover{
+.Login > button:hover {
   cursor: pointer;
 }
 
 .card {
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   background-color: aliceblue;
   transition: 0.3s;
   width: 300px;
@@ -38,12 +37,12 @@ body{
   float: left;
   margin: 20px 20px 20px 20px;
 }
-.card img{
+.card img {
   padding-top: 40px;
 }
 
 .card:hover {
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
 }
 
 .container {
@@ -52,15 +51,15 @@ body{
   padding-left: 30px;
   padding-right: 30px;
 }
-#searchcontainer{
+#searchcontainer {
   margin-top: 50px;
-  margin-bottom:50px;
+  margin-bottom: 50px;
 }
 
-.selectbutton:hover{
+.selectbutton:hover {
   cursor: pointer;
 }
 
-#type{
+#type {
   width: 200px;
 }
