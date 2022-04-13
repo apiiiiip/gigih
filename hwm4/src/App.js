@@ -63,7 +63,7 @@ export default function App() {
   const isLoggedIn = localStorage.getItem("isLoggedIn");
   // console.log(isLoggedIn);
   return (
-    <div className="awal">
+    <div className="font-mono">
       <Router>
         <Switch>
           <Route path="/create-playlist">

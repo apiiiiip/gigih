@@ -59,61 +59,60 @@ function Playlist() {
   };
 
   return (
-    <div>
-      <div>
-        <form onSubmit={handleSubmit}>
-          <button className="createButton" onClick={showFormHandler}>
-            Create Playlist
-          </button>
-          <br></br>
-        </form>
-        {showForm && (
-          <form className="inputPlaylist">
-            <label>
-              Playlist Name <br></br>
-              <input
-                className="inputname"
-                name="name"
-                type="text"
-                placeholder="Playlist Name"
-                onChange={handleChange}
-              />
-              <br></br>
-            </label>
-
-            <label>
-              Playlist Description <br></br>
-              <input
-                className="inputdesc"
-                name="desc"
-                type="text"
-                placeholder="Description"
-                onChange={handleChange}
-              />
-              <br></br>
-            </label>
-            <button
-              className="btnsubmitplaylist"
-              type="submit"
-              onClick={handleSubmit}
-            >
-              Submit
-            </button>
-          </form>
-        )}
-      </div>
-      <div className="createdplaylist">
-        {createdPlaylist &&
-          createdPlaylist.map((playlist) => (
-            <Playlistlist
-              key={playlist.id}
-              addItem={addItem}
-              playlistName={playlist.name}
-              id={playlist.id}
+    <>
+      <form onSubmit={handleSubmit}>
+        <button
+          className="bg-black border-2 shadow-[0_7px_rgb(77,77,77)] border-cyan-500 hover:bg-[rgb(32,41,42)] hover:cursor-pinter text-zinc-200 font-bold py-2 px-4 rounded-full active:bg-[rgb(65,98,99)] active:shadow-[0_5px_rgb(15,23,42)] active:translate-y-[3px] mb-3 ml-5"
+          onClick={showFormHandler}
+        >
+          Create Playlist
+        </button>
+        <br></br>
+      </form>
+      {showForm && (
+        <form className="pt-2 border-2 border-cyan-500 w-52 h-52 rounded-xl bg-[rgb(32,41,42)]">
+          <label className="text-slate-300 ml-5">
+            Playlist Name <br></br>
+            <input
+              className="mt-1 mb-2 ml-2.5 w-44 px-3 py-1  rounded-full border-2 border-cyan-500 bg-[rgb(36,60,61)] text-white"
+              name="name"
+              type="text"
+              placeholder=".  .  .  .  .  .  .  ."
+              onChange={handleChange}
             />
-          ))}
-      </div>
-    </div>
+            <br></br>
+          </label>
+
+          <label className="text-slate-300 ml-5">
+            Playlist Description <br></br>
+            <input
+              className="mt-1 mb-2 ml-2.5 w-44 px-3 py-1  rounded-full border-2 border-cyan-500 bg-[rgb(36,60,61)] text-white"
+              name="desc"
+              type="text"
+              placeholder="Description"
+              onChange={handleChange}
+            />
+            <br></br>
+          </label>
+          <button
+            className="bg-black border-2 shadow-[0_7px_rgb(77,77,77)] border-cyan-500 hover:bg-[rgb(32,41,42)] hover:cursor-pinter text-zinc-200 font-bold py-1 px-5 rounded-full active:bg-[rgb(65,98,99)] active:shadow-[0_5px_rgb(15,23,42)] active:translate-y-[3px] ml-12"
+            type="submit"
+            onClick={handleSubmit}
+          >
+            Submit
+          </button>
+        </form>
+      )}
+      {createdPlaylist &&
+        createdPlaylist.map((playlist) => (
+          <Playlistlist
+            key={playlist.id}
+            addItem={addItem}
+            playlistName={playlist.name}
+            id={playlist.id}
+          />
+        ))}
+    </>
   );
 }
 
