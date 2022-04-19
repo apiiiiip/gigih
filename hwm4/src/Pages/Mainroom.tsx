@@ -1,14 +1,44 @@
 import React, { useState, useContext, useCallback } from "react";
 import "../App.css";
 import { useSelector } from "react-redux";
-import { userID } from "../Pages/Homepage";
+import { HomepageContext, userID } from "./Homepage";
 import Search from "./searchbutton";
 import Playlist from "./playlist";
+import { RootState } from "../redux/Store";
+
+interface ImagesProps {
+  url: string;
+  height: number;
+  width: number;
+}
+
+interface ArtistProps {
+  name: string;
+}
+
+interface SearchResultResponse {
+  id: string;
+  album: {
+    images: ImagesProps[];
+  };
+  name: string;
+  artists: ArtistProps[];
+  duration_ms: number;
+}
 
 function Mainroom() {
-  const [access_token, listID, addID, deleteID] = useContext(userID);
-  const [searchResult, setsearchResult] = useState([]);
-  const searchValue = useSelector((state) => state.search.searchValue);
+  const {
+    access_token,
+    listID,
+    // eslint-disable-next-line no-unused-vars
+    addID,
+    // eslint-disable-next-line no-unused-vars
+    deleteID,
+  }: HomepageContext = useContext(userID);
+  const [searchResult, setsearchResult] = useState<SearchResultResponse[]>([]);
+  const searchValue = useSelector(
+    (state: RootState) => state.search.searchValue
+  );
 
   const handleSearch = useCallback(async () => {
     await fetch(
@@ -24,7 +54,10 @@ function Mainroom() {
       }
     )
       .then((res) => res.json())
-      .then((res) => setsearchResult(res.tracks.items));
+      .then((res) => {
+        // console.log(res);
+        setsearchResult(res.tracks.items);
+      });
   }, [searchValue, access_token]);
   // console.log(searchResult);
 

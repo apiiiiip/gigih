@@ -6,6 +6,7 @@ import axios from "axios";
 import Mainroom from "./Mainroom";
 import { useSelector, useDispatch } from "react-redux";
 import { setAccessToken } from "../redux/Accountslice";
+import { RootState } from "../redux/Store";
 
 //const CLIENT_ID = process.env.CLIENT_ID
 
@@ -13,15 +14,39 @@ import { setAccessToken } from "../redux/Accountslice";
 
 // class App extends Component {
 //   state = {access_token:"", searchResult:[], searchQuery:"" };
-export const userID = createContext();
+export const userID = createContext<HomepageContext>({
+  access_token: "",
+  listID: [],
+  addID: () => null,
+  deleteID: () => null,
+  userProfileId: "",
+});
+
+export interface HomepageContext {
+  access_token: string;
+  listID: string[];
+  // eslint-disable-next-line no-unused-vars
+  addID: (id: string) => void;
+  // eslint-disable-next-line no-unused-vars
+  deleteID: (id: string) => void;
+  userProfileId: string;
+}
+
+interface UserProfileProps {
+  id: string;
+}
 
 function Dashboard() {
   const dispatch = useDispatch();
   // const [access_token, set_access_token] = useState("");
-  const access_token = useSelector((state) => state.account.accessToken);
+  const access_token = useSelector(
+    (state: RootState) => state.account.accessToken
+  );
   // const [searchResult, setsearchResult] = useState([]);
   // const searchValue = useSelector((state) => state.search.searchValue);
-  const [userProfile, setuserProfile] = useState({});
+  const [userProfile, setuserProfile] = useState<UserProfileProps>({
+    id: "",
+  });
 
   const handleAccessToken = () => {
     window.location.href =
@@ -46,14 +71,17 @@ function Dashboard() {
   // }, [searchValue, access_token]);
   // console.log(searchResult)
 
-  const handleGetUserProfile = async (token) => {
+  const handleGetUserProfile = async (token: string) => {
     await axios({
       method: "GET",
       url: "https://api.spotify.com/v1/me",
       headers: {
         Authorization: `Bearer ${token}`,
       },
-    }).then((res) => setuserProfile(res.data));
+    }).then((res) => {
+      // console.log(res.data);
+      setuserProfile(res.data);
+    });
   };
   // console.log(userProfile)
 
@@ -63,7 +91,7 @@ function Dashboard() {
       window.location.hash
         .substring(1)
         .split("&")
-        .find((elem) => elem.startsWith("access_token"))
+        .find((elem) => elem.startsWith("access_token"))!
         .replace("access_token=", "");
     if (token) {
       handleGetUserProfile(token);
@@ -72,12 +100,12 @@ function Dashboard() {
     }
   }, []);
 
-  const [listID, setlistID] = useState([]);
+  const [listID, setlistID] = useState<string[]>([]);
 
-  const addID = (id) => {
+  const addID = (id: string) => {
     setlistID((prevState) => [...prevState, id]);
   };
-  const deleteID = (id) => {
+  const deleteID = (id: string) => {
     setlistID((prevState) =>
       prevState.filter((selectedID) => selectedID !== id)
     );
@@ -86,9 +114,15 @@ function Dashboard() {
   // console.log(listID);
   return (
     <userID.Provider
-      value={[access_token, listID, addID, deleteID, userProfile.id]}
+      value={{
+        access_token,
+        listID,
+        addID,
+        deleteID,
+        userProfileId: userProfile!.id,
+      }}
     >
-      <div className="bg-fixed bg-slate-900">
+      <div className="">
         <div className="grid grid-cols-1 grid-rows-1 place-items-center h-screen">
           {access_token === "" ? (
             <button

@@ -1,7 +1,14 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import React from "react";
 
-function Playlistlist({ playlistName, id, addItem }) {
+interface PlaylistlistProps {
+  playlistName: string;
+  id: string;
+  addItem: (id: string) => void;
+}
+
+function Playlistlist({ playlistName, id, addItem }: PlaylistlistProps) {
   return (
     <div>
       <h3 className="text-white font-semibold mt-1 mb-1 ml-5">

@@ -5,8 +5,12 @@ import "../App.css";
 import { changeSearch } from "../redux/Searchslice";
 import { useDispatch } from "react-redux";
 
+interface SearchProps {
+  handleSearch: () => void;
+}
+
 // eslint-disable-next-line react/prop-types
-function Search({ handleSearch }) {
+function Search({ handleSearch }: SearchProps) {
   const dispatch = useDispatch();
 
   return (
