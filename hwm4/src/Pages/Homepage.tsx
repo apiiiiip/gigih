@@ -14,13 +14,6 @@ import { RootState } from "../redux/Store";
 
 // class App extends Component {
 //   state = {access_token:"", searchResult:[], searchQuery:"" };
-export const userID = createContext<HomepageContext>({
-  access_token: "",
-  listID: [],
-  addID: () => null,
-  deleteID: () => null,
-  userProfileId: "",
-});
 
 export interface HomepageContext {
   access_token: string;
@@ -35,6 +28,14 @@ export interface HomepageContext {
 interface UserProfileProps {
   id: string;
 }
+
+export const userID = createContext<HomepageContext>({
+  access_token: "",
+  listID: [],
+  addID: () => null,
+  deleteID: () => null,
+  userProfileId: "",
+});
 
 function Dashboard() {
   const dispatch = useDispatch();

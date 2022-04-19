@@ -16,7 +16,7 @@ function Search({ handleSearch }: SearchProps) {
   return (
     <>
       <>
-        <div className="ml-6 mt-6">
+        <div data-testid="search-button" className="ml-6 mt-6">
           <div className="qe">
             <input
               className="absolute w-80 px-4 py-1  rounded-full border-2 border-cyan-500 bg-[rgb(36,60,61)] text-white"
