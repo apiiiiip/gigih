@@ -10,7 +10,7 @@ interface PlaylistlistProps {
 
 function Playlistlist({ playlistName, id, addItem }: PlaylistlistProps) {
   return (
-    <div>
+    <div className="ml-28">
       <h3 className="text-white font-semibold mt-1 mb-1 ml-5">
         Created: {playlistName}
       </h3>
