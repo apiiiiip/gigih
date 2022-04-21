@@ -50,8 +50,7 @@ function Dashboard() {
   });
 
   const handleAccessToken = () => {
-    window.location.href =
-      "https://accounts.spotify.com/authorize?client_id=0351cc6087e444268ec2ff1e557de0c6&scope=playlist-modify-private&response_type=token&redirect_uri=http://localhost:3000";
+    window.location.href = `https://accounts.spotify.com/authorize?client_id=0351cc6087e444268ec2ff1e557de0c6&scope=playlist-modify-private&response_type=token&redirect_uri=${window.location.origin}`;
   };
 
   // const handleSearch = useCallback(async () => {
