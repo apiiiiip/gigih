@@ -126,6 +126,7 @@ function Dashboard() {
         <div className="grid grid-cols-1 grid-rows-1 place-items-center h-screen">
           {access_token === "" ? (
             <button
+              data-testid="login-button"
               className="bg-black border-2 shadow-[0_7px_rgb(77,77,77)] border-cyan-500 hover:bg-[rgb(32,41,42)] hover:cursor-pinter text-zinc-200 font-bold py-2 px-4 rounded-full active:bg-[rgb(65,98,99)] active:shadow-[0_5px_rgb(15,23,42)] active:translate-y-[3px]"
               onClick={handleAccessToken}
             >
