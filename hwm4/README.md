@@ -40,6 +40,13 @@ Your app is ready to be deployed
 yarn build
 ```
 
+You can also open the app in the browser by running the following command:
+
+```bash
+[https://sepotipai.vercel.app](https://sepotipai.vercel.app)
+
+```
+
 ## Features
 
 Here some features of the app:
