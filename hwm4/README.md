@@ -4,7 +4,7 @@ Sepotipai is a React app built using Spotify API. This App is made using Typescr
 
 ## Installation
 
-To install the app, run the following command:
+To install this app, you just run the following command:
 
 ```bash
 yarn
