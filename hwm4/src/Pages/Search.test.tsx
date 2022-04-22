@@ -3,7 +3,7 @@ import { fireEvent, render } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import { Provider } from "react-redux";
 import { store } from "../redux/Store";
-import Search from "./searchbutton";
+import Search from "./Search";
 
 test("renders search song", () => {
   const { getByTestId } = render(

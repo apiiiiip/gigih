@@ -3,11 +3,7 @@ import "../App.css";
 import axios from "axios";
 import { userID } from "./Homepage";
 import Playlistlist from "../components/Addsong";
-
-interface CreatePlaylistProps {
-  id: string;
-  name: string;
-}
+import { CreatePlaylistProps } from "../typescript/Types";
 
 function Playlist() {
   const { access_token, listID, userProfileId } = useContext(userID);
@@ -77,10 +73,22 @@ function Playlist() {
           className="pt-2 border-2 border-cyan-500 w-52 h-52 rounded-xl bg-[rgb(32,41,42)] ml-28"
         >
           <label className="text-slate-300 ml-5">
+            Playlist Description <br></br>
+            <input
+              className="mt-1 mb-2 w-44 px-3 py-1  rounded-full border-2 border-cyan-500 bg-[rgb(36,60,61)] text-white"
+              name="desc"
+              type="text"
+              placeholder="Description"
+              onChange={handleChange}
+            />
+            <br></br>
+          </label>
+
+          <label className="text-slate-300 ml-5">
             Playlist Name <br></br>
             <input
               minLength={10}
-              className="mt-1 mb-2 ml-2.5 w-44 px-3 py-1  rounded-full border-2 border-cyan-500 bg-[rgb(36,60,61)] text-white"
+              className="mt-1 mb-2 w-44 px-3 py-1  rounded-full border-2 border-cyan-500 bg-[rgb(36,60,61)] text-white"
               name="name"
               type="text"
               placeholder=".  .  .  .  .  ."
@@ -89,19 +97,8 @@ function Playlist() {
             <br></br>
           </label>
 
-          <label className="text-slate-300 ml-5">
-            Playlist Description <br></br>
-            <input
-              className="mt-1 mb-2 ml-2.5 w-44 px-3 py-1  rounded-full border-2 border-cyan-500 bg-[rgb(36,60,61)] text-white"
-              name="desc"
-              type="text"
-              placeholder="Description"
-              onChange={handleChange}
-            />
-            <br></br>
-          </label>
           <button
-            className="bg-black border-2 shadow-[0_7px_rgb(77,77,77)] border-cyan-500 hover:bg-[rgb(32,41,42)] hover:cursor-pinter text-zinc-200 font-bold py-1 px-5 rounded-full active:bg-[rgb(65,98,99)] active:shadow-[0_5px_rgb(15,23,42)] active:translate-y-[3px] ml-12"
+            className="bg-black border-2 shadow-[0_7px_rgb(77,77,77)] border-cyan-500 hover:bg-[rgb(32,41,42)] hover:cursor-pinter text-zinc-200 font-bold py-1 px-4 rounded-full active:bg-[rgb(65,98,99)] active:shadow-[0_5px_rgb(15,23,42)] active:translate-y-[3px] ml-12"
             type="submit"
           >
             Submit

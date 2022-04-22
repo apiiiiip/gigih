@@ -1,10 +1,20 @@
-# Getting Started with Create React App
+# Sepotipai
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Sepotipai is a React app built using Spotify API. This App is made using Typescript, Tailwind css, Redux, React Hooks. It is a simple app that allows you to search for songs, artists, and add your favorites songs to your playlist. This App is made for educational purposes. This app also uses eslint for code quality. For testing purposes, I used react-testing-library.
 
-## Available Scripts
+## Installation
 
-In the project directory, you can run:
+To install the app, run the following command:
+
+```bash
+yarn
+```
+
+or
+
+```bash
+ npm install
+```
 
 ### `yarn start`
 
@@ -16,8 +26,7 @@ You may also see any lint errors in the console.
 
 ### `yarn test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Launches the test runner in the interactive watch mode.
 
 ### `yarn build`
 

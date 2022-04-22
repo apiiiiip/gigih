@@ -7,27 +7,7 @@ import Mainroom from "./Mainroom";
 import { useSelector, useDispatch } from "react-redux";
 import { setAccessToken } from "../redux/Accountslice";
 import { RootState } from "../redux/Store";
-
-//const CLIENT_ID = process.env.CLIENT_ID
-
-//const CLIENT_SECRET = process.env.CLIENT_SECRET
-
-// class App extends Component {
-//   state = {access_token:"", searchResult:[], searchQuery:"" };
-
-export interface HomepageContext {
-  access_token: string;
-  listID: string[];
-  // eslint-disable-next-line no-unused-vars
-  addID: (id: string) => void;
-  // eslint-disable-next-line no-unused-vars
-  deleteID: (id: string) => void;
-  userProfileId: string;
-}
-
-interface UserProfileProps {
-  id: string;
-}
+import { HomepageContext, UserProfileProps } from "../typescript/Types";
 
 export const userID = createContext<HomepageContext>({
   access_token: "",
@@ -39,12 +19,11 @@ export const userID = createContext<HomepageContext>({
 
 function Dashboard() {
   const dispatch = useDispatch();
-  // const [access_token, set_access_token] = useState("");
+
   const access_token = useSelector(
     (state: RootState) => state.account.accessToken
   );
-  // const [searchResult, setsearchResult] = useState([]);
-  // const searchValue = useSelector((state) => state.search.searchValue);
+
   const [userProfile, setuserProfile] = useState<UserProfileProps>({
     id: "",
   });
@@ -53,25 +32,7 @@ function Dashboard() {
     window.location.href = `https://accounts.spotify.com/authorize?client_id=0351cc6087e444268ec2ff1e557de0c6&scope=playlist-modify-private&response_type=token&redirect_uri=${window.location.origin}`;
   };
 
-  // const handleSearch = useCallback(async () => {
-  //   await fetch(
-  //     `https://api.spotify.com/v1/search?q=${searchValue.replaceAll(
-  //       " ",
-  //       "+"
-  //     )}&type=track&limit=12`,
-  //     {
-  //       method: "GET",
-  //       headers: {
-  //         Authorization: `Bearer ${access_token}`,
-  //       },
-  //     }
-  //   )
-  //     .then((res) => res.json())
-  //     .then((res) => setsearchResult(res.tracks.items));
-  // }, [searchValue, access_token]);
-  // console.log(searchResult)
-
-  const handleGetUserProfile = async (token: string) => {
+  const handleUserProfile = async (token: string) => {
     await axios({
       method: "GET",
       url: "https://api.spotify.com/v1/me",
@@ -83,7 +44,7 @@ function Dashboard() {
       setuserProfile(res.data);
     });
   };
-  // console.log(userProfile)
+  // console.log(userProfile);
 
   useEffect(() => {
     const token =
@@ -94,7 +55,7 @@ function Dashboard() {
         .find((elem) => elem.startsWith("access_token"))!
         .replace("access_token=", "");
     if (token) {
-      handleGetUserProfile(token);
+      handleUserProfile(token);
       // set_access_token(token);
       dispatch(setAccessToken(token));
     }
@@ -136,29 +97,6 @@ function Dashboard() {
             <Mainroom />
           )}
         </div>
-        {/* {searchResult.map((item) => {
-            return (
-              <div key={item.id} className="card">
-                <img src={item.album.images[2].url} alt="foto" />
-                <div className="container">
-                  <div></div>
-                  <p>{item.name}</p>
-                  <p>{item.artists[0].name}</p>
-                  <p>{item.album.release_date}</p>
-                  <button
-                    className="selectbutton"
-                    onClick={() =>
-                      listID.includes(item.id)
-                        ? deleteID(item.id)
-                        : addID(item.id)
-                    }
-                  >
-                    {listID.includes(item.id) ? "Deselect" : "Select"}
-                  </button>
-                </div>
-              </div>
-            );
-          })} */}
       </div>
     </userID.Provider>
   );

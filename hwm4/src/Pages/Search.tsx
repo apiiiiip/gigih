@@ -4,10 +4,7 @@ import "../App.css";
 //import {Component} from 'react';
 import { changeSearch } from "../redux/Searchslice";
 import { useDispatch } from "react-redux";
-
-interface SearchProps {
-  handleSearch: () => void;
-}
+import { SearchProps } from "../typescript/Types";
 
 // eslint-disable-next-line react/prop-types
 function Search({ handleSearch }: SearchProps) {
